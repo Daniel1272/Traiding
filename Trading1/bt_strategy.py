@@ -57,19 +57,7 @@ def run_backtest(df, model, features, cash=10000, printlog=False):
     cerebro.broker.setcash(cash)
 
     # создаём DataFeed
-    data = bt.feeds.PandasData(
-        dataname=df,
-        datetime='timestamp',
-        open=None,
-        high=None,
-        low=None,
-        close='close',
-        volume=None,
-        openinterest=None,
-        plot=True,
-        timeframe=bt.TimeFrame.Minutes
-    )
-
+    data = MyPandasData(dataname=df)
     cerebro.adddata(data)
     cerebro.addstrategy(ModelStrategy, model=model, features=features, printlog=printlog)
 
