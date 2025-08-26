@@ -2,7 +2,13 @@ import backtrader as bt
 
 # 1️⃣ Кастомный DataFeed с твоими признаками
 class MyPandasData(bt.feeds.PandasData):
-    lines = ('f1', 'f2', 'f3', 'd1', 'd2', 'd3', 'dirpct_1', 'dirpct_2', 'dirpct_3')
+    lines = tuple(
+        [f"f{i}" for i in range(1, 9)] +
+        [f"d{i}" for i in range(1, 8)] +
+        [f"pct_{i}" for i in range(1, 7)] +
+        [f"dirpct_{i}" for i in range(1, 7)]
+    )
+
     params = (
         ('datetime', 'timestamp'),
         ('open', None),
@@ -11,7 +17,11 @@ class MyPandasData(bt.feeds.PandasData):
         ('close', 'close'),
         ('volume', None),
         ('openinterest', None),
-    )
+    ) + tuple((f"f{i}", f"f{i}") for i in range(1, 9)) \
+      + tuple((f"d{i}", f"d{i}") for i in range(1, 8)) \
+      + tuple((f"pct_{i}", f"pct_{i}") for i in range(1, 7)) \
+      + tuple((f"dirpct_{i}", f"dirpct_{i}") for i in range(1, 7))
+
 
 # 2️⃣ Стратегия, которая будет использовать ML модель
 class MLStrategy(bt.Strategy):

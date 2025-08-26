@@ -126,6 +126,6 @@ def build_wave_features_diffs_pct_dir(
 df = find_pivot_points(df, column='close')
 df = add_waves_from_pivots(df, column='close', pivot_col='pivot', num_waves=1)
 features =  build_wave_features_diffs_pct_dir(df, pivot_col='pivot', wave_col='wave_1', num_features=8)
-#print(features[['timestamp','close','pivot','f1','f2','f3','d1','d2','d3','dirpct_1','dirpct_2','dirpct_3']].head(15))
+print(features.columns)
 
 

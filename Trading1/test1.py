@@ -27,7 +27,8 @@ df = find_pivot_points(df, column='close')
 df = add_waves_from_pivots(df, column='close', pivot_col='pivot', num_waves=1)
 features =  build_wave_features_diffs_pct_dir(df, pivot_col='pivot', wave_col='wave_1', num_features=8)
 # используем признаки для модели
-features_list = [col for col in features.columns if col.startswith('f')]
+features_list = [col for col in features.columns if col.startswith(('f', 'd', 'pct', 'dirpct'))]
 
+print(features_list)
 # запускаем бэктест
-run_backtest(features, model=model, features=features_list, cash=10000, printlog=True)
+#run_backtest(features, model=model, features=features_list, cash=10000, printlog=True)
