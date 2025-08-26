@@ -29,6 +29,6 @@ features =  build_wave_features_diffs_pct_dir(df, pivot_col='pivot', wave_col='w
 # используем признаки для модели
 features_list = [col for col in features.columns if col.startswith(('f', 'd', 'pct', 'dirpct'))]
 
-print(features_list)
+
 # запускаем бэктест
-#run_backtest(features, model=model, features=features_list, cash=10000, printlog=True)
+run_backtest(features, model=model, features=features_list, cash=10000, printlog=True)

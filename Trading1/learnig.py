@@ -64,8 +64,8 @@ def walk_forward_validation_verbose(df, features, target, train_size=0.7, step_s
 features = [col for col in pivots.columns if col.startswith(('f','d','pct','dirpct'))]
 y_true, y_pred, accuracies = walk_forward_validation_verbose(
     pivots, features, target='f1_dir', step_size=10)
-
-X = pivots[features]
+plt.close()
+X = pivots[features].drop(columns='f1_dir')
 y = pivots['f1_dir']
 
 model = RandomForestClassifier(n_estimators=200, max_depth=6, random_state=42)
@@ -73,4 +73,6 @@ model.fit(X, y)
 
 # сохраняем модель на диск
 joblib.dump(model, 'rf_model.pkl')
+
+
 
