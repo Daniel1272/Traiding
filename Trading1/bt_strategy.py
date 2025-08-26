@@ -1,6 +1,18 @@
 import backtrader as bt
 import pandas as pd
 
+
+class MyPandasData(bt.feeds.PandasData):
+    lines = ('f1', 'f2', 'f3', 'd1', 'd2', 'd3', 'dirpct_1', 'dirpct_2', 'dirpct_3')
+    params = (
+        ('datetime', 'timestamp'),
+        ('open', None),
+        ('high', None),
+        ('low', None),
+        ('close', 'close'),
+        ('volume', None),
+        ('openinterest', None),
+    )
 class ModelStrategy(bt.Strategy):
     params = (
         ('model', None),       # обученная модель
